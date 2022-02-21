@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if page == 'login' %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Enter Username" />
+
+            <input type="password" name="password" placeholder="Enter Password" />
+
+            <input type="submit" value="Login" />
+        </form>
+
+        <p>Haven't sign up yet?</p>
+        <a href="{% url 'register' %}">Sign up</a>
+
+    </div>
+{% else %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% comment %} <input type="text" name="username" placeholder="Enter Username" />
+            <input type="password" name="password" placeholder="Enter Password" />
+            <input type="password" name="password_repeated" placeholder="Repeat Password" />
+            <input type="submit" value="Register" /> 
+            BUT INSTEAD OF MANNUALY WE WILL USE UserCreationForm() from django build in
+            {% endcomment %}
+
+            <input type="submit" value="Register" /> 
+        </form>
+
+        <p>Allready have an account?</p>
+        <a href="{% url 'login' %}">Sign in</a>
+    </div>
+
+{% endif %}
+
+{% endblock content %}
